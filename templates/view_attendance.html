@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">History</p>
+        <h1>Attendance Records</h1>
+    </div>
+    <a class="button" href="{{ url_for('mark_attendance') }}">Mark Attendance</a>
+</div>
+
+<div class="table-panel">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in attendance_records %}
+                <tr>
+                    <td><span class="roll-number">{{ record.roll_number }}</span></td>
+                    <td class="student-name">{{ record.name }}</td>
+                    <td>{{ record.date }}</td>
+                    <td><span class="status {{ 'present' if record.status == 'Present' else 'absent' }}">{{ record.status }}</span></td>
+                </tr>
+                {% else %}
+                <tr><td class="empty-state" colspan="4">No attendance records found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Directory</p>
+        <h1>Registered Students</h1>
+    </div>
+    <a class="button" href="{{ url_for('add_student') }}">Add Student</a>
+</div>
+
+<div class="table-panel">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td><span class="roll-number">{{ student.roll_number }}</span></td>
+                    <td class="student-name">{{ student.name }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>Year {{ student.year }}</td>
+                </tr>
+                {% else %}
+                <tr><td class="empty-state" colspan="4">No students registered yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

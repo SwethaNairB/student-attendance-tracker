@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Student Management</p>
+        <h1>Add New Student</h1>
+    </div>
+</div>
+
+<form class="form-panel" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="roll_number">Roll Number</label>
+            <input id="roll_number" type="text" name="roll_number" placeholder="e.g. CS101" required>
+        </div>
+        <div class="field">
+            <label for="name">Student Name</label>
+            <input id="name" type="text" name="name" placeholder="Enter full name" required>
+        </div>
+        <div class="field">
+            <label for="department">Department</label>
+            <input id="department" type="text" name="department" placeholder="e.g. Computer Science" required>
+        </div>
+        <div class="field">
+            <label for="year">Year</label>
+            <input id="year" type="number" name="year" min="1" max="6" placeholder="1-6" required>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit">Save Student</button>
+        <a class="button secondary" href="{{ url_for('view_students') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

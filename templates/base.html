@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-inner">
+            <a class="brand" href="{{ url_for('home') }}" aria-label="Student Attendance Tracker dashboard">
+                <span class="brand-mark">SA</span>
+                <span>
+                    <strong>Student Attendance</strong>
+                    <small>Academic Management</small>
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-inner">
+            <a class="{{ 'active' if request.endpoint == 'home' else '' }}" href="{{ url_for('home') }}">Dashboard</a>
+            <a class="{{ 'active' if request.endpoint == 'add_student' else '' }}" href="{{ url_for('add_student') }}">Add Student</a>
+            <a class="{{ 'active' if request.endpoint == 'view_students' else '' }}" href="{{ url_for('view_students') }}">Students</a>
+            <a class="{{ 'active' if request.endpoint == 'mark_attendance' else '' }}" href="{{ url_for('mark_attendance') }}">Mark Attendance</a>
+            <a class="{{ 'active' if request.endpoint == 'view_attendance' else '' }}" href="{{ url_for('view_attendance') }}">Records</a>
+            <a class="{{ 'active' if request.endpoint == 'attendance_report' else '' }}" href="{{ url_for('attendance_report') }}">Reports</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Student Attendance Tracker <span aria-hidden="true">&bull;</span> DBMS Mini Project</p>
+    </footer>
+</body>
+</html>

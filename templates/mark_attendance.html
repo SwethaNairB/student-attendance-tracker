@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Daily Attendance</p>
+        <h1>Mark Attendance</h1>
+    </div>
+</div>
+
+<form class="form-panel" method="POST">
+    <div class="form-grid">
+        <div class="field full-width">
+            <label for="student_id">Select Student</label>
+            <select id="student_id" name="student_id" required>
+                {% for student in students %}
+                <option value="{{ student.id }}">{{ student.roll_number }} - {{ student.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field">
+            <label for="date">Attendance Date</label>
+            <input id="date" type="date" name="date" required>
+        </div>
+        <div class="field">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit">Save Attendance</button>
+        <a class="button secondary" href="{{ url_for('home') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

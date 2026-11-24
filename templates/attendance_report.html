@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Analytics</p>
+        <h1>Student Attendance Report</h1>
+    </div>
+</div>
+
+<div class="table-panel">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Present Days</th>
+                    <th>Total Classes</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in reports %}
+                <tr>
+                    <td><span class="roll-number">{{ record.roll_number }}</span></td>
+                    <td class="student-name">{{ record.name }}</td>
+                    <td>{{ record.present_days }}</td>
+                    <td>{{ record.total_classes }}</td>
+                    <td>
+                        <div class="percentage">
+                            <div class="percentage-track" aria-hidden="true">
+                                <span class="{{ 'low' if record.percentage < 75 else '' }}" style="width: {{ record.percentage }}%"></span>
+                            </div>
+                            <strong>{{ record.percentage }}%</strong>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td class="empty-state" colspan="5">No report data available.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
